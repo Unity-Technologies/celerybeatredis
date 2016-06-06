@@ -119,7 +119,7 @@ class PeriodicTask(object):
         self.running = False
 
         # storing extra arguments (might be useful to have other args depending on application)
-        for elem in extrakwargs.keys():
+        for elem in list(extrakwargs.keys()):
             setattr(self, elem, extrakwargs[elem])
 
     @staticmethod
@@ -224,7 +224,7 @@ class PeriodicTask(object):
         => rdb is hidden
         :return:
         """
-        for k, v in vars(self).iteritems():
+        for k, v in vars(self).items():
             if k == 'data':
                 yield 'schedule', self.schedule
             else:  # we can expose everything else
